@@ -13,6 +13,7 @@ import {
 import { ModeToggle } from "./ModeToggle"
 import { Link } from "react-router"
 import Logo from "@/assets/icons/Logo"
+import { useUseLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -21,6 +22,16 @@ const navigationLinks = [
 ]
 
 export default function Navbar() {
+
+  const {data} = useUserInfoQuery(undefined)
+  const [logout] = useUseLogoutMutation()
+
+  console.log(data?.data)
+
+  const handleLogout = async()=>{
+    await logout(undefined)
+  }
+
   return (
     <header className="border-b px-4 md:px-6">
       <div className="flex container mx-auto px-4 sm:px-6 lg:px-8 h-16 justify-between gap-4">
@@ -101,9 +112,17 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-2">
           <ModeToggle/>
-          <Button asChild className="text-sm">
-            <Link to="/login">Login</Link>
-          </Button>
+
+          {
+            data?.data.email ? (
+              <div className="flex items-center justify-center gap-2">
+                <Button onClick={handleLogout} className="text-sm">Logout</Button>
+                <Link to={"/dashboard"}><Button className="text-sm">Dashboard</Button></Link>
+              </div>
+            ) : (
+              <Button asChild className="text-sm"><Link to="/login">Login</Link></Button>
+            )
+          }
         </div>
       </div>
     </header>

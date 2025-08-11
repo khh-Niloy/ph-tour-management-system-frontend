@@ -22,7 +22,50 @@ export default function Verify() {
     const [sendOTP] = useSendOTPMutation()
     const [verifyOTP] = useVerifyOTPMutation()
     const [email] = useState(location.state)
-    console.log("email",email)
+    const [resendBtn, setResendBtn] = useState(true)
+    const [timer, setTimer] = useState(10)
+
+    // Start initial timer when component mounts
+    useEffect(() => {
+        setResendBtn(true)
+        setTimer(10)
+        
+        const intervalId = setInterval(() => {
+            setTimer((prev) => {
+                if (prev <= 1) {
+                    clearInterval(intervalId)
+                    setResendBtn(false)
+                    return 0
+                }
+                return prev - 1
+            })
+        }, 1000)
+
+        return () => clearInterval(intervalId)
+    }, []) // Run only on mount
+
+    // Handle timer after resend
+    useEffect(() => {
+        let intervalId: NodeJS.Timeout
+        
+        if (resendBtn) {
+            intervalId = setInterval(() => {
+                setTimer((prev) => {
+                    if (prev <= 1) {
+                        clearInterval(intervalId)
+                        setResendBtn(false)
+                        return 0
+                    }
+                    return prev - 1
+                })
+            }, 1000)
+        }
+
+        return () => clearInterval(intervalId)
+    }, [resendBtn])
+
+
+    // console.log("email",email)
     // console.log(location)
     useEffect(()=>{
         if(!location.state){
@@ -40,30 +83,30 @@ export default function Verify() {
     const onSubmit: SubmitHandler<FieldValues> = async(data) => {
         try {
         // const toastID = toast.loading("OTP is verifying")
-        console.log(data)
+        // console.log(data)
         const payload = {
         email: email,
         otp: data.pin
         }
         const res = await verifyOTP(payload).unwrap()
-        console.log(res)
+        // console.log(res)
         toast.success("OTP verified")
         navigate("/")
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             toast.error(error.data.message)
         }
     }
 
-    const handleResendOTP: SubmitHandler<FieldValues> = async()=>{
+    const handleResendOTP = async () => {
         try {
+            setResendBtn(true)
+            setTimer(10)
             await sendOTP({email: email}).unwrap()
-            toast.success("OTP send to your email")
-            reset({ pin: "" });
-            // navigate("/")
-        } catch (error) {
-            console.log(error)
-            toast.error(error.data.message)
+            toast.success("OTP sent to your email")
+            reset({ pin: "" })
+        } catch (error: any) {
+            toast.error(error?.data?.message || "Failed to resend OTP")
         }
     }
 
@@ -97,15 +140,28 @@ export default function Verify() {
                                             </InputOTP>
                                         </FormControl>
                                         <FormDescription>
-                                            Didn't receive the code?
-                                            <Button 
-                                                size="sm" 
-                                                className="ml-3"
-                                                type="button"
-                                                onClick={handleResendOTP}
-                                            >
-                                                resend
-                                            </Button>
+
+                                            {
+                                                !resendBtn ? (
+                                                     <div className="flex items-center justify-start">
+                                                         <h1>Didn't receive the code?</h1>
+                                                <Button 
+                                                    size="sm" 
+                                                    className="ml-3"
+                                                    type="button"
+                                                    onClick={handleResendOTP}
+                                                >
+                                                    resend
+                                                </Button>
+                                                     </div>
+                                                ) : 
+                                                (
+                                                    <div className="flex flex-col justify-start items-start">
+                                                        <h1>Didn't receive the code?</h1>
+                                                        <h1>you can resend again in {timer} sec</h1>
+                                                    </div>
+                                                )
+                                            }
                                         </FormDescription>
                                         <FormMessage />
                                     </FormItem>
