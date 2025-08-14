@@ -1,25 +1,15 @@
-import AllUser from "@/pages/admin/AllUser";
-import CreateTour from "@/pages/admin/CreateTour";
+import Bookings from "@/pages/user/Bookings";
+import type { ISidebarItem } from "@/types";
 
-export const userRoutes = [
-    {
-      title: "User",
-      items: [
-        {
-          title: "All User",
-          url: "/admin/all-user",
-          component: AllUser
-        },
-      ],
-    },
-    {
-      title: "Tour management",
-      items: [
-        {
-          title: "Create Tour",
-          url: "/admin/create-tour",
-          component: CreateTour
-        },
-      ],
-    },
-]
+export const userRoutes: ISidebarItem[] = [
+  {
+    title: "History",
+    items: [
+      {
+        title: "Bookings",
+        url: "/user/bookings",
+        component: Bookings,
+      },
+    ],
+  },
+];

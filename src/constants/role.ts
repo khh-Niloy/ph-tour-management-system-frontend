@@ -3,3 +3,5 @@ export const Role = {
   admin: "ADMIN",
   user: "USER",
 };
+
+type TRole = "ADMIN" | "USER"
