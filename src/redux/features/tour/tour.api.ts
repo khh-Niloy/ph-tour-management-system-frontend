@@ -19,8 +19,17 @@ export const tourApi = baseApi.injectEndpoints({
             providesTags: ["TOUR"],
             transformResponse: (response)=> response.data
         }),
+
+        deleteTourType: builder.mutation({
+            query: (tourId)=>({
+                url: `tour/tour-types/${tourId}`,
+                method: "DELETE",
+                // data: tourType
+            }),
+            invalidatesTags: ["TOUR"]
+        }),
         
     })
 })
 
-export const { useAddTourTypeMutation, useGetTourTypeQuery } = tourApi
+export const { useAddTourTypeMutation, useGetTourTypeQuery, useDeleteTourTypeMutation } = tourApi

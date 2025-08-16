@@ -37,6 +37,11 @@ export const adminRoutes: ISidebarItem[] = [
         url: "/admin/add-tour",
         component: AddTour,
       },
+      {
+        title: "Add Division",
+        url: "/admin/add-division",
+        component: AddDivision,
+      },
     ],
   },
 ];
