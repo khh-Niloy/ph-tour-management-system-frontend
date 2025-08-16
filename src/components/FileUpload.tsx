@@ -7,7 +7,7 @@ interface FileUploadProps {
   onChange: (file: File | null) => void;
 }
 
-export default function FileUpload({ onChange }: FileUploadProps) {
+export default function FileUpload({ onChange: setImage }: FileUploadProps) {
   const maxSizeMB = 5
   const maxSize = maxSizeMB * 1024 * 1024 // 5MB default
 
@@ -31,12 +31,12 @@ export default function FileUpload({ onChange }: FileUploadProps) {
     if (files.length > 0) {
       const file = files[0].file;
       if (file instanceof File) {
-        onChange(file);
+        setImage(file);
       } else {
-        onChange(null);
+        setImage(null);
       }
     } else {
-      onChange(null);
+      setImage(null);
     }
   }, [files]);
 
