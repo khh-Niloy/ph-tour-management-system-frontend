@@ -6,8 +6,8 @@ export const userRoutes: ISidebarItem[] = [
     title: "History",
     items: [
       {
-        title: "Bookings",
-        url: "/user/bookings",
+        title: "All User",
+        url: "/user/all-user",
         component: Bookings,
       },
     ],

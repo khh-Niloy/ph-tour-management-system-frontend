@@ -20,6 +20,7 @@ import { useAppDispatch } from "@/redux/hooks"
 const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "about", label: "About" },
+  { href: "tour", label: "Tour" },
 ]
 
 export default function Navbar() {

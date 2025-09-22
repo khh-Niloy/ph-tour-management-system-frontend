@@ -1,0 +1,149 @@
+PH Tour Management System Frontend - Project Structure
+=======================================================
+
+ph-tour-management-system-frontend/
+├── README.md
+├── bun.lock
+├── components.json
+├── eslint.config.js
+├── index.html
+├── node_modules/
+├── package-lock.json
+├── package.json
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── App.tsx
+│   ├── assets/
+│   │   ├── icons/
+│   │   │   └── Logo.tsx
+│   │   ├── images/
+│   │   └── react.svg
+│   ├── components/
+│   │   ├── DeleteConfirmAlert.tsx
+│   │   ├── FileUpload.tsx
+│   │   ├── MultipleFileUploader.tsx
+│   │   ├── app-sidebar.tsx
+│   │   ├── layout/
+│   │   │   ├── CommonLayout.tsx
+│   │   │   ├── DashboardLayout.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── ModeToggle.tsx
+│   │   │   └── Navbar.tsx
+│   │   ├── modules/
+│   │   │   ├── admin/
+│   │   │   │   ├── division/
+│   │   │   │   │   └── AddDivisionModal.tsx
+│   │   │   │   ├── tour/
+│   │   │   │   │   └── DatePicker.tsx
+│   │   │   │   └── tourType/
+│   │   │   │       └── AddTourTypeModal.tsx
+│   │   │   ├── auth/
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   └── RegisterForm.tsx
+│   │   │   └── home/
+│   │   │       └── HeroSection.tsx
+│   │   ├── search-form.tsx
+│   │   ├── ui/
+│   │   │   ├── Password.tsx
+│   │   │   ├── alert-dialog.tsx
+│   │   │   ├── breadcrumb.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── calendar.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   ├── form.tsx
+│   │   │   ├── input-otp.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── navigation-menu.tsx
+│   │   │   ├── popover.tsx
+│   │   │   ├── select.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sheet.tsx
+│   │   │   ├── sidebar.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── sonner.tsx
+│   │   │   ├── table.tsx
+│   │   │   ├── textarea.tsx
+│   │   │   └── tooltip.tsx
+│   │   └── version-switcher.tsx
+│   ├── config/
+│   │   └── envVars.ts
+│   ├── constants/
+│   │   └── role.ts
+│   ├── context/
+│   │   └── theme.context.tsx
+│   ├── hooks/
+│   │   ├── use-file-upload.ts
+│   │   ├── use-mobile.ts
+│   │   └── useTheme.tsx
+│   ├── index.css
+│   ├── lib/
+│   │   ├── axios.ts
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── middleware/
+│   │   └── roleBasedCompo.tsx
+│   ├── pages/
+│   │   ├── About.tsx
+│   │   ├── HomePage.tsx
+│   │   ├── Tour.tsx
+│   │   ├── TourDetailes.tsx
+│   │   ├── Unauthorized.tsx
+│   │   ├── Verify.tsx
+│   │   ├── admin/
+│   │   │   ├── AddDivision.tsx
+│   │   │   ├── AddTour.tsx
+│   │   │   ├── AddTourType.tsx
+│   │   │   ├── AllUser.tsx
+│   │   │   ├── Analytics.tsx
+│   │   │   └── CreateTour.tsx
+│   │   ├── auth/
+│   │   │   ├── LoginPage.tsx
+│   │   │   ├── RegisterPage.tsx
+│   │   │   └── Verify.tsx
+│   │   └── user/
+│   │       ├── AllBooking.tsx
+│   │       └── Bookings.tsx
+│   ├── provider/
+│   │   └── theme.provider.tsx
+│   ├── redux/
+│   │   ├── axiosBaseQuery.ts
+│   │   ├── baseApi.ts
+│   │   ├── features/
+│   │   │   ├── auth/
+│   │   │   │   └── auth.api.ts
+│   │   │   ├── division/
+│   │   │   │   └── division.api.ts
+│   │   │   └── tour/
+│   │   │       └── tour.api.ts
+│   │   ├── hooks.ts
+│   │   └── store.ts
+│   ├── routes/
+│   │   ├── adminRoutes.ts
+│   │   ├── index.tsx
+│   │   └── userRoutes.ts
+│   ├── types/
+│   │   ├── index.ts
+│   │   └── tour.type.ts
+│   ├── utils/
+│   │   ├── generateRoutes.ts
+│   │   └── roleBasedSidebarItems.ts
+│   └── vite-env.d.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+Project Overview:
+- React/TypeScript frontend application
+- Uses Vite as build tool
+- Implements Redux for state management
+- Contains admin and user role-based features
+- Tour management system with booking functionality
+- UI components built with shadcn/ui
+- Theme support with dark/light mode
+- File upload capabilities
+- Authentication and authorization system

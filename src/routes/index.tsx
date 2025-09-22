@@ -15,6 +15,10 @@ import { roleBasedCompo } from '@/middleware/roleBasedCompo';
 import { Role } from '@/constants/role';
 import type { TRole } from '@/types';
 import Unauthorized from '@/pages/Unauthorized';
+import Tour from '@/pages/Tour';
+import HomePage from '@/pages/HomePage';
+import TourDetailes from '@/pages/TourDetailes';
+import Booking from '@/pages/Booking';
 
 export const router = createBrowserRouter([
   {
@@ -22,9 +26,26 @@ export const router = createBrowserRouter([
     Component: App,
     children: [
       {
+        index: true,
+        Component: HomePage
+      }
+      ,
+      {
         path: 'about',
         Component: About
-      }
+      },
+      {
+        path: 'tour',
+        Component: Tour
+      },
+      {
+        path: 'tour/:id',
+        Component: TourDetailes
+      },
+      {
+        path: 'booking/:id',
+        Component: Booking
+      },
     ]
   },
 

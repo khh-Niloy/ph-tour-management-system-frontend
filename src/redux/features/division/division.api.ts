@@ -40,4 +40,4 @@ export const divisionApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useGetAllDivisionQuery, useCreateDivisionMutation } = divisionApi
+export const { useGetAllDivisionQuery, useCreateDivisionMutation, useGetSingleDivisionQuery } = divisionApi
